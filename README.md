@@ -1,4 +1,4 @@
-# delivery-much
+# Pokedex
 
 ## Project setup
 ```
