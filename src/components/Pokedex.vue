@@ -1,71 +1,61 @@
 <template>
-  <div class="hello">
+  <div class="container">
     <h1>{{ title }}</h1>
     <h4>Escolha a geração dos pokemons</h4>
-    <div class="teste">
-      <form class="choices" v-for="choice in choices" :key="choice">
-        <input @click="getGeneration(choice)" type="radio" name="choice" :id="choice" :value="choice">
-        <label :for="choice">Generation {{choice}}</label>
-      </form>
+    <div class="container options">
+      <div class="choices" v-for="option in options" :key="option">
+        <input @click="getGeneration(option)" type="radio" name="choices" :id="`generation${option}`" :value="option">
+        <label :for="`generation${option}`">Generation {{option}}</label>
+      </div>
     </div>
-    <div class="generations">
-      <p>{{ generations.name }}</p>
-      <ul class="pokemons" v-for="pokemons in generations.pokemon_species" :key="pokemons.id">
-        <li>{{ pokemons.name }}</li>
-      </ul>
-    </div>
+    <PokeList :items="generations"/>
   </div>
 </template>
 
 <script>
+import PokeList from './PokeList.vue'
+
 export default {
   props: {
     title: String
   },
   data () {
     return {
-      generations: [],
-      choices: [1, 2, 3, 4, 5, 6]
+      generations: 1,
+      options: [1, 2, 3, 4, 5, 6]
     }
   },
 
   methods: {
     getGeneration (value) {
-      console.log(value)
       this.$http(`generation/${value}`)
         .then(response => {
           this.generations = response.data
-          console.log(this.generations)
         })
     }
+  },
+
+  components: {
+    PokeList
   }
 }
 </script>
 <style scoped lang="scss">
-.teste {
+.options {
   display: flex;
   justify-content: center;
   align-items: center;
+
   .choices {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 15px;
-  }
-}
 
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+    label {
+      margin: 0 4px 0;
+      font-size: 12px;
+    }
+  }
 }
 </style>
