@@ -22,7 +22,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cards {
+.container {
+  padding-bottom: 200px;
+  .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
@@ -38,6 +40,7 @@ export default {
     width: 220px;
     height: 249px;
   }
+}
 }
 
 @media (max-width: 1025px) {

@@ -8,7 +8,7 @@
         <label :for="`generation${option}`">Generation {{option}}</label>
       </div>
     </div>
-    <PokeList :items="generations"/>
+    <PokeList class="pokelist" :items="generations"/>
   </div>
 </template>
 
@@ -57,5 +57,9 @@ export default {
       font-size: 12px;
     }
   }
+}
+.pokelist {
+  height: 100vh;
+  overflow: scroll;
 }
 </style>
