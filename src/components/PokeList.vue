@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p>{{ items.name }}</p>
+    <h2>{{ items.name }}</h2>
     <div class="cards">
       <div class="card" v-for="pokemons in items.pokemon_species" :key="pokemons.id">
         <img class="image" :src="`https://img.pokemondb.net/artwork/${pokemons.name}.jpg`" :alt="pokemons.name">
@@ -24,6 +24,11 @@ export default {
 <style lang="scss" scoped>
 .container {
   padding-bottom: 200px;
+
+  h2 {
+    margin-top: 15px;
+    text-transform: uppercase;
+  }
   .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
